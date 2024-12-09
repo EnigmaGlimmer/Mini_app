@@ -6,6 +6,8 @@ import Header from './Header';
 import { usePage } from '@/store';
 import styled from 'styled-components';
 import { ProtectVaultCare } from './home/ProtectVaultCare';
+import { Thank_you } from './home/Thank_you';
+import { CheckVaultCare } from './home/CheckVaultCare';
 
 const MainPageWrapper = ({ children, showHeader, hiddenFooter }) => {
   const { page, setPageState } = usePage();
@@ -23,7 +25,10 @@ const MainPageWrapper = ({ children, showHeader, hiddenFooter }) => {
     //     </Stack>
     //   )}
     // </Stack>
-    <ProtectVaultCare />
+
+    // <ProtectVaultCare />
+    // <Thank_you />
+    <CheckVaultCare />
   )
 };
 
