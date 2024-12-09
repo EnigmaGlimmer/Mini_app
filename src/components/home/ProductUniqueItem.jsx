@@ -4,7 +4,6 @@ import { Assets } from "@/assets";
 import { Currencies } from "@/utils";
 import { Reward } from "./Reward";
 import { BlockchainData } from "./BlockchainData";
-import { VaultCare } from "./Vaultcare";
 import { Transfer } from "./Transfer";
 import { useRewards } from "@/store/rewardStore";
 import ProductItemViewer from "./ProductItemViewer";
@@ -55,11 +54,6 @@ export const ProductUniqueItem = ({ item, onBack, scrollRef }) => {
             title: "Blockchain Data",
             icon: Assets.blockchain,
             element: <BlockchainData select={item} />,
-        },
-        {
-            title:"VaultCare",
-            icon: Assets.blockchain,
-            element: <VaultCare />
         },
         {
             title: "Transfer",
