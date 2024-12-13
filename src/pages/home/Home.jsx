@@ -13,6 +13,8 @@ import { ProductWallCard } from '@components/home/ProductWallCard';
 import { ProductListCard } from '@components/home/ProductListCard';
 import Loading from '@components/Loading';
 import { Currencies } from '@/utils';
+import { ProtectVaultCare } from '@/components/home/ProtectVaultCare';
+import { CheckVaultCare } from '@/components/home/CheckVaultCare';
 
 export const Home = (props) => {
   const { page, setPageState } = usePage();
@@ -23,7 +25,7 @@ export const Home = (props) => {
   const detailScrollRef = useRef(null);
 
   const handelOpenDetail = (item) => {
-    setPageState(true, item);
+    setPageState(true, item,false);
   };
 
   const handleCloseDetail = () => {
@@ -60,10 +62,16 @@ export const Home = (props) => {
   if (isFetching && orders.length === 0) {
     return <Loading />;
   }
-
+  
   if (page?.openDetail && page?.select) {
     if (page.is3D) {
       return <Product3DViewer item={page?.select} />
+    }
+
+    if(page.isVaultCare) {
+      if(page.completeVaultCare)
+        return <CheckVaultCare select={page?.select} />;
+      return <ProtectVaultCare select={page?.select}/>;
     }
 
     return (

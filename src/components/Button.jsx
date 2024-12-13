@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import { Colors } from "@styles/theme";
 
 export const Button = (props) => {
-  const { background, onClick, title,  ...rest } = props;
+  const { background, onClick, title, ...rest } = props;
 
   return (
     <Content
@@ -11,7 +11,7 @@ export const Button = (props) => {
       onClick={onClick}
       {...rest}
     >
-      <Title>{title}</Title>
+      <Title color={props.color}>{title}</Title>
     </Content>
   );
 };
@@ -44,5 +44,5 @@ const Title = styled.div`
   font-size: 16px;
   line-height: 24px;
   text-align: center;
-  color: ${Colors.white};
+  color: ${(props) => props.color ? props.color : Colors.white};
 `;

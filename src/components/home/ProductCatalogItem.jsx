@@ -117,8 +117,8 @@ export const ProductCatalogItem = ({ item, onBack, scrollRef }) => {
         },
         {
             title:"VaultCare",
-            icon: Assets.blockchain,
-            element: <VaultCare />
+            icon: Assets.insurance,
+            element: <VaultCare select={item} onBack={onBack} scrollRef={scrollRef} image={image} title={title}/>
         },
         {
             title: "Repair",

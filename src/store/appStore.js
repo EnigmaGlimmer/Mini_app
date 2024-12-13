@@ -16,24 +16,28 @@ const pageState = atom({
         showFooter: true,
         is3D: false,
         isOpenApp: false,
+        isVaultCare: false,
+        completeVaultCare:false,
     },
 });
 
 export const usePage = () => {
     const [page, setPage] = useRecoilState(pageState);
-    const setPageState = useCallback((openDetail, select) => {
+    const setPageState = useCallback((openDetail, select, isVaultCare, completeVaultCare) => {
         setPage({
             ...page,
             openDetail: openDetail,
             select: select,
             is3D: false,
+            isVaultCare: isVaultCare,
+            completeVaultCare: completeVaultCare
         });
     }, [page]);
 
     return {
         page,
         setPage,
-        setPageState
+        setPageState,
     };
 };
 
