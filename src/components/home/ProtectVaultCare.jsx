@@ -11,6 +11,7 @@ export const ProtectVaultCare = ({select}) => {
     const {setShowHeader, setShowFooter} = useAppState();
     const [checkboxes, setCheckboxes] = useState([false, false, false]);
     const [showThankYouPage, setShowThankYouPage] = useState(false);
+    const thanksTitle="Your Vaultcare Policy is active ID: 92928 37dd.";
 
     const detailScrollRef = useRef(null);
 
@@ -33,7 +34,7 @@ export const ProtectVaultCare = ({select}) => {
     };
 
     if(showThankYouPage) {
-        return <Thank_you select={select}/>
+        return <Thank_you select={select} title={thanksTitle}/>
     }
 
     return (

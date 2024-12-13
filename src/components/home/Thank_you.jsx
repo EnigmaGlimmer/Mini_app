@@ -4,12 +4,7 @@ import { Button } from "../Button";
 import { Colors } from "@/styles/theme";
 import { usePage } from "@/store";
 
-const titles = [
-    "Your Vaultcare Policy is active ID: 92928 37dd.",
-    "We receive your request.You will receive an email when the policy will be active."
-];
-
-export const Thank_you = ({select}) => {
+export const Thank_you = ({select, title}) => {
     const {setPageState} = usePage();
 
     const handleClick = () => {
@@ -23,7 +18,7 @@ export const Thank_you = ({select}) => {
                     <h3><b>Thanks you!</b></h3>
                     <img src="/Group.png" alt="Group" width={120} height={120} />
                     <p style={{ margin: "0px" }}>
-                        {titles[0]}
+                        {title}
                     </p>
                 </div>
 

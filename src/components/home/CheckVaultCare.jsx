@@ -10,6 +10,7 @@ export const CheckVaultCare = ({ select }) => {
     const { page, setPageState } = usePage();
     const { setShowHeader, setShowFooter } = useAppState();
     const [showThankYouPage, setShowThankYouPage] = useState(false);
+    const thanksTitle = "We receive your request.You will receive an email when the policy will be active.";
 
     const handleBack = () => {
         setShowHeader(true);
@@ -22,7 +23,7 @@ export const CheckVaultCare = ({ select }) => {
     }
 
     if(showThankYouPage) {
-        return <Thank_you select={select}/>
+        return <Thank_you select={select} title={thanksTitle}/>
     }
 
     return (
