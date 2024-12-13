@@ -5,7 +5,7 @@ import { Link } from '@mui/material';
 import { RightArrowIcon } from '../icons/RightArrowIcon';
 import { useAppState, usePage } from '@/store';
 
-export function VaultCare({ select, onBack, scrollRef, image, title }) {
+export function VaultCare({ select }) {
     const { page, setPageState } = usePage();
     const { setShowHeader, setShowFooter } = useAppState();
     const completeVaultCare = page.completeVaultCare;
@@ -23,7 +23,6 @@ export function VaultCare({ select, onBack, scrollRef, image, title }) {
     }
     
     if (completeVaultCare) {
-
         return (
             <Content>
                 <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "100%", padding: "32px 24px", gap: "20px", backgroundColor: "black", color: "white", textAlign: "center", borderRadius: "16px" }}>

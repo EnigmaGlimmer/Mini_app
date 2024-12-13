@@ -12,6 +12,7 @@ export const ProtectVaultCare = ({select}) => {
     const [checkboxes, setCheckboxes] = useState([false, false, false]);
     const [showThankYouPage, setShowThankYouPage] = useState(false);
     const thanksTitle="Your Vaultcare Policy is active ID: 92928 37dd.";
+    const srcImage = select.product.images[0];
 
     const detailScrollRef = useRef(null);
 
@@ -47,7 +48,7 @@ export const ProtectVaultCare = ({select}) => {
                         <h5 style={{ padding: "8px 4px", backgroundColor: "#f5f5f5", borderRadius: "8px", width: "fit-content", color: "black", margin: "0px" }}>VALUE: $14390</h5>
                     </div>
                     <div>
-                        <img width={86} height={120} style={{ backgroundColor: 'black', borderRadius: "12px" }} />
+                        <img width={86} height={120} style={{ borderRadius: "12px" }} src={srcImage}/>
                     </div>
                 </Content>
 
@@ -79,7 +80,7 @@ export const ProtectVaultCare = ({select}) => {
                     ))}
                 </div>
 
-                <div>
+                <div style={{marginTop: "auto"}}>
                     <Button
                         title="Pay 99 €"
                         background={allChecked ? Colors.neutral_900 : "lightgray"}
@@ -95,8 +96,8 @@ export const ProtectVaultCare = ({select}) => {
 const VaultCareContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 24px;
+  gap: 8px;
+  padding: 16px;
   background-color: #fafafa;
   height: 200%;
 `;

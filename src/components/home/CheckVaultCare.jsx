@@ -11,6 +11,7 @@ export const CheckVaultCare = ({ select }) => {
     const { setShowHeader, setShowFooter } = useAppState();
     const [showThankYouPage, setShowThankYouPage] = useState(false);
     const thanksTitle = "We receive your request.You will receive an email when the policy will be active.";
+    const srcImage = select.product.images[0];
 
     const handleBack = () => {
         setShowHeader(true);
@@ -28,20 +29,20 @@ export const CheckVaultCare = ({ select }) => {
 
     return (
         <DetailPageWrapper onBack={handleBack} title="VaultCare">
-            <div style={{ display: "flex", flexDirection: "column", backgroundColor: "#fafafa", padding: "24px", height: "200%", gap: "16px" }}>
+            <div style={{ display: "flex", flexDirection: "column", backgroundColor: "#fafafa", padding: "16px", height: "200%", gap: "8px" }}>
                 <div style={{ display: "flex", flexDirection: "row", padding: "28px 22px", justifyContent: "space-between", backgroundColor: "white", borderRadius: "12px" }}>
                     <TitleTypography>Policy ID</TitleTypography>
                     <Typography>IDIAU020228331221</Typography>
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "row", padding: "16px", justifyContent: "space-between", alignItems: "center", gap: "8px", backgroundColor: "white", borderRadius: "8px" }}>
-                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "16px" }}>
+                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "8px" }}>
                         <Typography style={{ fontSize: "12px" }}>Certificate Number: <b>V383jwdja938777j</b></Typography>
                         <TitleTypography style={{ fontSize: "18px" }}>Rolex Cosmograph Daytona 116508</TitleTypography>
                         <h5 style={{ padding: "8px 4px", backgroundColor: "#f5f5f5", borderRadius: "8px", width: "fit-content", color: "black", margin: "0px" }}>VALUE: $14390</h5>
                     </div>
                     <div>
-                        <img width={86} height={120} style={{ backgroundColor: 'black', borderRadius: "12px" }} />
+                        <img width={86} height={120} style={{ borderRadius: "12px" }} src={srcImage}/>
                     </div>
                 </div>
 

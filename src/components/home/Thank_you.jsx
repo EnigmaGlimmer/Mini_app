@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import DetailPageWrapper from "../DetailPageWrapper";
 import { Button } from "../Button";
 import { Colors } from "@/styles/theme";
-import { usePage } from "@/store";
+import { useAppState, usePage } from "@/store";
 
 export const Thank_you = ({select, title}) => {
     const {setPageState} = usePage();
+    const {setShowHeader, setShowFooter} = useAppState();
 
     const handleClick = () => {
         setPageState(true, select, false, true);
+        setShowHeader(true);
+        setShowFooter(true);
     };
 
     return (
