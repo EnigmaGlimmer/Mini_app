@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import DetailPageWrapper from "../DetailPageWrapper";
 import styled from "styled-components";
 import { Button } from "../Button";
 import { useAppState, usePage } from "@/store";
 import { Colors } from "@/styles/theme";
+import { Assets } from "@/assets";
 import { Thank_you } from "./Thank_you";
+import { BackIcon, CloseIcon, VaultCareContainer } from "./ProtectVaultCare";
+import { Times } from "../icons/Times";
 
 export const CheckVaultCare = ({ select }) => {
     const { page, setPageState } = usePage();
@@ -23,49 +25,60 @@ export const CheckVaultCare = ({ select }) => {
         setShowThankYouPage(true);
     }
 
-    if(showThankYouPage) {
-        return <Thank_you select={select} title={thanksTitle}/>
+    if (showThankYouPage) {
+        return <Thank_you select={select} title={thanksTitle} />
     }
 
     return (
-        <DetailPageWrapper onBack={handleBack} title="VaultCare">
-            <div style={{ display: "flex", flexDirection: "column", backgroundColor: "#fafafa", padding: "16px", height: "200%", gap: "8px" }}>
-                <div style={{ display: "flex", flexDirection: "row", padding: "28px 22px", justifyContent: "space-between", backgroundColor: "white", borderRadius: "12px" }}>
-                    <TitleTypography>Policy ID</TitleTypography>
-                    <Typography>IDIAU020228331221</Typography>
+        <VaultCareContainer>
+            <div>
+                <BackIcon onClick={handleBack}>
+                    <img src={Assets.left_arrow} alt="" />
+                </BackIcon>
+                <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: "8px", padding: "4px" }}>
+                    <img src="/Group.png" alt="VaultCare" width={30} height={30} />
+                    <h3 style={{ margin: "0px" }}>VaultCare</h3>
                 </div>
+                <CloseIcon>
+                    <Times fontSize='20px' />
+                </CloseIcon>
+            </div>
 
-                <div style={{ display: "flex", flexDirection: "row", padding: "16px", justifyContent: "space-between", alignItems: "center", gap: "8px", backgroundColor: "white", borderRadius: "8px" }}>
-                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "8px" }}>
-                        <Typography style={{ fontSize: "12px" }}>Certificate Number: <b>V383jwdja938777j</b></Typography>
-                        <TitleTypography style={{ fontSize: "18px" }}>Rolex Cosmograph Daytona 116508</TitleTypography>
-                        <h5 style={{ padding: "8px 4px", backgroundColor: "#f5f5f5", borderRadius: "8px", width: "fit-content", color: "black", margin: "0px" }}>VALUE: $14390</h5>
-                    </div>
-                    <div>
-                        <img width={86} height={120} style={{ borderRadius: "12px" }} src={srcImage}/>
-                    </div>
+            <div style={{ display: "flex", flexDirection: "row", padding: "28px 22px", justifyContent: "space-between", backgroundColor: "white", borderRadius: "12px" }}>
+                <TitleTypography>Policy ID</TitleTypography>
+                <Typography>IDIAU020228331221</Typography>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "row", padding: "16px", justifyContent: "space-between", alignItems: "center", gap: "8px", backgroundColor: "white", borderRadius: "8px" }}>
+                <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "8px" }}>
+                    <Typography style={{ fontSize: "12px" }}>Certificate Number: <b>V383jwdja938777j</b></Typography>
+                    <TitleTypography style={{ fontSize: "18px" }}>Rolex Cosmograph Daytona 116508</TitleTypography>
+                    <h5 style={{ padding: "8px 4px", backgroundColor: "#f5f5f5", borderRadius: "8px", width: "fit-content", color: "black", margin: "0px" }}>VALUE: $14390</h5>
                 </div>
-
-                <Container>
-                    <TitleTypography>Annual pricing</TitleTypography>
-                    <Typography>99 €</Typography>
-                </Container>
-
-                <Container>
-                    <TitleTypography>Expiry</TitleTypography>
-                    <Typography>27/12/2025</Typography>
-                </Container>
-
-                <div style={{ marginTop: "auto" }}>
-                    <Button
-                        title="Submit a Claim"
-                        background={Colors.white}
-                        color={Colors.black}
-                        onClick={handleThanks}
-                    />
+                <div>
+                    <img width={86} height={120} style={{ borderRadius: "12px" }} src={srcImage} />
                 </div>
             </div>
-        </DetailPageWrapper>
+
+            <Container>
+                <TitleTypography>Annual pricing</TitleTypography>
+                <Typography>99 €</Typography>
+            </Container>
+
+            <Container>
+                <TitleTypography>Expiry</TitleTypography>
+                <Typography>27/12/2025</Typography>
+            </Container>
+
+            <div style={{ marginTop: "auto" }}>
+                <Button
+                    title="Submit a Claim"
+                    background={Colors.white}
+                    color={Colors.black}
+                    onClick={handleThanks}
+                />
+            </div>
+        </VaultCareContainer>
     );
 }
 
@@ -77,16 +90,6 @@ const Container = styled.div`
     background-color: white;
     border-radius: 8px;
 `;
-
-// const Button = styled.div`
-//     width: 100%;
-//     cursor: pointer;
-//     border: 1px solid gray;
-//     background-color: white;
-//     border-radius: 8px;
-//     padding: 12px;
-//     text-align:center
-// `;
 
 const TitleTypography = styled.h4`
     font-family: Geomanist;
