@@ -4,13 +4,13 @@ import { Button } from "../Button";
 import { useAppState, usePage } from "@/store";
 import { Colors } from "@/styles/theme";
 import { Assets } from "@/assets";
-import { Thank_you } from "./Thank_you";
+import { ThankYou } from "./ThankYou";
 import { BackIcon, CloseIcon, VaultCareContainer } from "./ProtectVaultCare";
 import { Times } from "../icons/Times";
 
 export const CheckVaultCare = ({ select }) => {
     const { page, setPageState } = usePage();
-    const { setShowHeader, setShowFooter } = useAppState();
+    const { setShowHeader, setShowFooter, closeApp } = useAppState();
     const [showThankYouPage, setShowThankYouPage] = useState(false);
     const thanksTitle = "We receive your request.You will receive an email when the policy will be active.";
     const srcImage = select.product.images[0];
@@ -19,6 +19,10 @@ export const CheckVaultCare = ({ select }) => {
         setShowHeader(true);
         setPageState(true, select, false, true);
         setShowFooter(true);
+    };
+
+    const handleClose = () => {
+        closeApp();
     }
 
     const handleThanks = () => {
@@ -26,7 +30,7 @@ export const CheckVaultCare = ({ select }) => {
     }
 
     if (showThankYouPage) {
-        return <Thank_you select={select} title={thanksTitle} />
+        return <ThankYou select={select} title={thanksTitle} />
     }
 
     return (
@@ -35,11 +39,11 @@ export const CheckVaultCare = ({ select }) => {
                 <BackIcon onClick={handleBack}>
                     <img src={Assets.left_arrow} alt="" />
                 </BackIcon>
-                <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: "8px", padding: "4px" }}>
-                    <img src="/Group.png" alt="VaultCare" width={30} height={30} />
+                <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: "8px", padding: "4px", marginBottom: "16px"}}>
+                    <img src={Assets.vaultcare} alt="VaultCare" width={30} height={30} />
                     <h3 style={{ margin: "0px" }}>VaultCare</h3>
                 </div>
-                <CloseIcon>
+                <CloseIcon onClick={handleClose}>
                     <Times fontSize='20px' />
                 </CloseIcon>
             </div>
@@ -50,7 +54,7 @@ export const CheckVaultCare = ({ select }) => {
             </div>
 
             <div style={{ display: "flex", flexDirection: "row", padding: "16px", justifyContent: "space-between", alignItems: "center", gap: "8px", backgroundColor: "white", borderRadius: "8px" }}>
-                <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "8px" }}>
+                <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "14px" }}>
                     <Typography style={{ fontSize: "12px" }}>Certificate Number: <b>V383jwdja938777j</b></Typography>
                     <TitleTypography style={{ fontSize: "18px" }}>Rolex Cosmograph Daytona 116508</TitleTypography>
                     <h5 style={{ padding: "8px 4px", backgroundColor: "#f5f5f5", borderRadius: "8px", width: "fit-content", color: "black", margin: "0px" }}>VALUE: $14390</h5>
@@ -92,12 +96,10 @@ const Container = styled.div`
 `;
 
 const TitleTypography = styled.h4`
-    font-family: Geomanist;
     font-size: 16px;
 `;
 
 const Typography = styled.p`
-    font-family: Geomanist;
     font-size:16px;
     margin: 0px;
 `

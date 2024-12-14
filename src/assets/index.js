@@ -52,7 +52,8 @@ import redeemItem1 from "./icons/redeem-item-1.svg"
 import redeemItem2 from "./icons/redeem-item-2.svg"
 import redeemItem3 from "./icons/redeem-item-3.svg"
 import smallLogo from "./small_logo.svg"
-import welcomeBg from "./welcome-bg.svg"
+import welcomeBg from "./welcome-bg.svg";
+import vaultcare from "./images/vaultcare.png";
 
 export const Assets = {
   homeIcon: homeIcon,
@@ -119,5 +120,7 @@ export const Assets = {
   redeemItem2: redeemItem2, 
   redeemItem3: redeemItem3, 
 
-  welcomeBg
+  welcomeBg,
+
+  vaultcare:vaultcare,
 };

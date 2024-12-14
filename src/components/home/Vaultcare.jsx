@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Colors } from "@/styles/theme";
 import styled from "styled-components";
 import { Link } from '@mui/material';
-import { RightArrowIcon } from '../icons/RightArrowIcon';
 import { useAppState, usePage } from '@/store';
+import { Colors } from "@/styles/theme";
+import { Assets } from '@/assets';
+import { RightArrowIcon } from '../icons/RightArrowIcon';
+import { Button } from '../Button';
 
 export function VaultCare({ select }) {
     const { page, setPageState } = usePage();
@@ -27,11 +29,11 @@ export function VaultCare({ select }) {
             <Content>
                 <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "100%", padding: "32px 24px", gap: "20px", backgroundColor: "black", color: "white", textAlign: "center", borderRadius: "16px" }}>
                     <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "8px" }}>
-                        <img src='/Group.png' alt='Group' width={30} height={30} />
+                        <img src={Assets.vaultcare} alt='VaultCare' width={30} height={30} />
                         <h2 style={{ margin: "0px" }}>VaultCare</h2>
                     </div>
                     <div>
-                        <p style={{ margin: "0px", fontSize: "14px" }}>Powered by Avata</p>
+                        <p style={{ margin: "0px", fontSize: "12px", maxWidth:"60px" }}>Powered by Avata</p>
                     </div>
                 </div>
 
@@ -57,9 +59,12 @@ export function VaultCare({ select }) {
                 </ButtonWithIcon>
 
                 <div style={{ width: "100%" }}>
-                    <Button>
-                        Submit a Claim
-                    </Button>
+                <Button
+                    title="Submit a Claim"
+                    background={Colors.white}
+                    color="#404040"
+                    border={`1px solid ${Colors.neutral_200}`}
+                />
                 </div>
             </Content>
         );
@@ -108,7 +113,6 @@ const ButtonWithIcon = styled.div`
 `;
 
 const ButtonTitle = styled.div`
-    font-family: "Geomanist";
     font-style: normal;
     font-weight: 500;
     font-size: ${({ size }) => size || "16px"};
@@ -117,7 +121,6 @@ const ButtonTitle = styled.div`
 `;
 
 const Desc = styled.div`
-    font-family: "Geomanist";
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -126,16 +129,16 @@ const Desc = styled.div`
     color: #707070;
 `;
 
-const Button = styled.div`
-    width: 100%;
-    cursor: pointer;
-    border: 1px solid ${Colors.neutral_200};
-    background-color: white;
-    color: #404040;
-    border-radius: 8px;
-    padding: 12px;
-    text-align:center;
-`;
+// const Button = styled.div`
+//     width: 100%;
+//     cursor: pointer;
+//     border: 1px solid ${Colors.neutral_200};
+//     background-color: white;
+//     color: #404040;
+//     border-radius: 8px;
+//     padding: 12px;
+//     text-align:center;
+// `;
 
 const ProgressBarSection = styled.div`
     width: 100%;

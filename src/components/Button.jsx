@@ -5,6 +5,7 @@ import { Colors } from "@styles/theme";
 export const Button = (props) => {
   const { background, onClick, title, ...rest } = props;
 
+  console.log("background", background);
   return (
     <Content
       background={background}
@@ -25,9 +26,9 @@ const Content = styled.button`
   min-height: 48px;
   height: 48px;
   background: ${(props) => props.background};
-  border-radius: 6px;
+  border-radius: ${(props) => props.borderRadius ? props.borderRadius:"6px"};
   cursor: pointer;
-  border: none;
+  border: ${(props) =>props.border ? props.border:"none"};
 
   &:disabled {
     cursor: default;

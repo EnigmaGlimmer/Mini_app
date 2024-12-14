@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import { useAppState, usePage } from '@/store';
 import { Times } from '../icons/Times';
 import { Button } from '../Button';
-import { Thank_you } from './Thank_you';
+import { ThankYou } from './ThankYou';
 
 export const ProtectVaultCare = ({ select }) => {
     const { page, setPageState } = usePage();
-    const { setShowHeader, setShowFooter } = useAppState();
+    const { setShowHeader, setShowFooter, closeApp } = useAppState();
     const [checkboxes, setCheckboxes] = useState([false, false, false]);
     const [showThankYouPage, setShowThankYouPage] = useState(false);
     const thanksTitle = "Your Vaultcare Policy is active ID: 92928 37dd.";
@@ -22,6 +22,10 @@ export const ProtectVaultCare = ({ select }) => {
         setPageState(true, select, false);
         setShowFooter(true);
     };
+
+    const handleClose = () => {
+        closeApp();
+    }
 
     const handleCheckboxChange = (index) => {
         const updatedCheckboxes = [...checkboxes];
@@ -36,7 +40,7 @@ export const ProtectVaultCare = ({ select }) => {
     };
 
     if (showThankYouPage) {
-        return <Thank_you select={select} title={thanksTitle} />
+        return <ThankYou select={select} title={thanksTitle} />
     }
 
     return (
@@ -45,18 +49,18 @@ export const ProtectVaultCare = ({ select }) => {
                 <BackIcon onClick={handleBack}>
                     <img src={Assets.left_arrow} alt="" />
                 </BackIcon>
-                <div style={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"center", gap:"8px", padding:"4px", marginBottom:"16px"}}>
-                    <img src="/Group.png" alt="VaultCare" width={30} height={30}/>
-                    <h3 style={{margin:"0px"}}>VaultCare</h3>
+                <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", gap: "8px", padding: "4px", marginBottom: "16px" }}>
+                    <img src={Assets.vaultcare} alt="VaultCare" width={30} height={30} />
+                    <h3 style={{ margin: "0px" }}>VaultCare</h3>
                 </div>
-                <CloseIcon>
+                <CloseIcon onClick={handleClose}>
                     <Times fontSize='20px' />
                 </CloseIcon>
             </div>
             <Content>
-                <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "16px" }}>
+                <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: "14px" }}>
                     <p style={{ fontSize: "12px", margin: "0px" }}>Certificate Number: <b>V383jwdja938777j</b></p>
-                    <h4 style={{ fontFamily: "Geomanist" }}>Rolex Cosmograph Daytona 116508</h4>
+                    <h4 style={{ fontFamily: "Geomanist", fontSize: "18px" }}>Rolex Cosmograph Daytona 116508</h4>
                     <h5 style={{ padding: "8px 4px", backgroundColor: "#f5f5f5", borderRadius: "8px", width: "fit-content", color: "black", margin: "0px" }}>VALUE: $14390</h5>
                 </div>
                 <div>
@@ -70,8 +74,25 @@ export const ProtectVaultCare = ({ select }) => {
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", padding: "16px", gap: "12px" }}>
-                {[
-                    "By signing up, I confirm to have read and agreed to Vaultik's Terms & conditions and Privacy Policy, and I certify that I'm at least 18 years old.",
+                {[<>
+                    By signing up, I confirm to have read and agreed to{" "}
+                    <a
+                        href="/terms-and-conditions"
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        style={{color:`${Colors.plush_1000}`}}
+                    >Vaultik's Terms & conditions</a>{" "}
+                    and{" "}
+                    <a
+                        href="/privacy-policy"
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        style={{color:`${Colors.plush_1000}`}}
+                    >
+                        Privacy Policy
+                    </a>
+                    , and I certify that I'm at least 18 years old.
+                </>,
                     "I'd like to receive personalized offers and be the first to know about the latest Vaultik updates via email.",
                     "I'd like to receive personalized offers and be the first to know about the latest Vaultik updates via email."
                 ].map((text, index) => (
@@ -79,15 +100,18 @@ export const ProtectVaultCare = ({ select }) => {
                         display: "flex",
                         flexDirection: "row",
                         alignItems: "start",
-                        gap: "8px",
+                        gap: "16px",
                     }}>
-                        <input
-                            type="checkbox"
-                            style={{ marginTop: "6px", transform: {} }}
-                            checked={checkboxes[index]}
-                            onChange={() => handleCheckboxChange(index)}
-                        />
-                        <p style={{ margin: "0px" }}>{text}</p>
+                        <CustomCheckboxContainer>
+                            <input
+                                type='checkbox'
+                                id={`custom-${index}`}
+                                checked={checkboxes[index]}
+                                onChange={() => handleCheckboxChange(index)}
+                            />
+                            <label htmlFor={`custom-${index}`}></label>
+                        </CustomCheckboxContainer>
+                        <text style={{ fontSize: "12px", color:"#0c0B0F",margin: "0px", width: "auto" }}>{text}</text>
                     </div>
                 ))}
             </div>
@@ -95,7 +119,8 @@ export const ProtectVaultCare = ({ select }) => {
             <div style={{ marginTop: "auto" }}>
                 <Button
                     title="Pay 99 €"
-                    background={allChecked ? Colors.neutral_900 : "lightgray"}
+                    background={allChecked ? Colors.neutral_900 : "#888888"}
+                    borderRadius="16px"
                     disabled={!allChecked}
                     onClick={handleThanks}
                 />
@@ -119,7 +144,7 @@ export const Content = styled.div`
     padding: 16px;
     justify-content: space-between;
     align-items: center;
-    gap: 8px;
+    gap: 29px;
     background-color: white;
     border-radius: 8px;
 `;
@@ -162,4 +187,42 @@ export const CloseIcon = styled.div`
   border-radius: 24px;
   cursor: pointer;
   z-index: 999;
+`;
+
+const CustomCheckboxContainer = styled.div`
+    display: inline-block;
+    margin-top: 4px;
+    
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    label {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background-color: #e5e5e5;
+        border-radius: 10px;
+        position: relative;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 22%;
+            left: 52%;
+            width: 12px;
+            height: 6px;
+            border: solid black;
+            border-width: 0 0 3px 3px;
+            transform: rotate(-45deg) translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+    }
+
+    input[type="checkbox"]:checked + label::after {
+        opacity: 1;
+    }
 `;
